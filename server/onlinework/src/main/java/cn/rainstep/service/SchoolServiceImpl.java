@@ -5,7 +5,6 @@ import cn.rainstep.entity.School;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -30,4 +29,18 @@ public class SchoolServiceImpl implements SchoolService {
         return schoolRepository.findAll(pageable);
     }
 
+    @Override
+    public School get(Integer id) {
+        return schoolRepository.getOne(id);
+    }
+
+    @Override
+    public void save(School school) {
+        schoolRepository.save(school);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        schoolRepository.delete(id);
+    }
 }

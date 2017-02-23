@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Created by Zero on 2017/2/21.
@@ -23,8 +26,25 @@ public class SchoolController {
 
     @PostMapping("/findAll")
     public Page<School> findAll(@RequestParam(defaultValue = "1") Integer pageNum,
-                                @RequestParam(defaultValue = "10") Integer pageSize) {
+                                  @RequestParam(defaultValue = "10") Integer pageSize) {
+        System.out.println(pageNum);
         Pageable pageable = new PageRequest(pageNum - 1, pageSize);
-        return schoolService.findAll(pageable);
+        Page<School> data = schoolService.findAll(pageable);
+        return data;
+    }
+
+    @PostMapping("/get")
+    public School get(Integer id) {
+        return schoolService.get(id);
+    }
+
+    @PostMapping("/save")
+    public void save(School school) {
+        schoolService.save(school);
+    }
+
+    @PostMapping("/delete")
+    public void delete(Integer id) {
+        schoolService.delete(id);
     }
 }

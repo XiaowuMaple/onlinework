@@ -129,3 +129,7 @@
 			}
 	}
 </script>
+
+<style scoped>
+	.el-form{margin: 22px 22px 0 0;}
+</style>

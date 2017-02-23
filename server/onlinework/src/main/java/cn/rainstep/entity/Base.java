@@ -8,7 +8,7 @@ import javax.persistence.MappedSuperclass;
  * Created by Zero on 2017/2/21.
  */
 @MappedSuperclass
-public class Base {
+public class Base{
     @Id
     @GeneratedValue
     private Integer id;
