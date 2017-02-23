@@ -29,6 +29,11 @@
 		      	</div>
 			</el-table-column>
 		</el-table>
+		
+		<!-- pagination -->
+		<div class="pagination">
+			<el-pagination :total="1000"></el-pagination>
+		</div>
 	</el-row>
 </template>
 
@@ -46,7 +51,7 @@
 				let url = "school/findAll";
 				http.post(url, {}, response => {
 					this.list = response;
-				})
+				});
 			},
 			handleEdit(row) {
 				console.log(row);
@@ -69,5 +74,13 @@
 	.toolbar {
 		background: #fff;
 		padding: 10px 10px 0px 10px;
+	}
+	.pagination {
+		overflow: auto;
+		margin: 10px;
+	}
+	.pagination>.el-pagination{
+/*		text-align: center;*/
+		float: right;
 	}
 </style>
