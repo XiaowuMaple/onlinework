@@ -20,7 +20,7 @@ public class CommonFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        response.setHeader("Access-Control-Allow-Origin", "http://localhost:8085");
+        response.setHeader("Access-Control-Allow-Origin", "*");
         filterChain.doFilter(request, response);
     }
 
