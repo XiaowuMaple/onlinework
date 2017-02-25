@@ -48,7 +48,12 @@
 			findAll() {
 				let url = "user/findAll";
 				http.post(url, {}, response => {
-					this.list = response;
+					if(response.result) {
+						this.list = response.data;
+						this.$message({ message: response.message, type: "success" });
+					} else {
+						this.$message({ message: response.message, type: "error" });
+					}
 				})
 			},
 			handleEdit(row) {
