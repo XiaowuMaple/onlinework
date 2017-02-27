@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -20,31 +19,32 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/school")
-public class SchoolController {
+public class SchoolController extends BaseController {
     @Autowired
     private SchoolService schoolService;
 
     @PostMapping("/findAll")
-    public Page<School> findAll(@RequestParam(defaultValue = "1") Integer pageNum,
-                                  @RequestParam(defaultValue = "10") Integer pageSize) {
-        System.out.println(pageNum);
+    public Map<String, Object> findAll(@RequestParam(defaultValue = "1") Integer pageNum,
+                       @RequestParam(defaultValue = "10") Integer pageSize) {
         Pageable pageable = new PageRequest(pageNum - 1, pageSize);
         Page<School> data = schoolService.findAll(pageable);
-        return data;
+        return succeed(data);
     }
 
     @PostMapping("/get")
-    public School get(Integer id) {
-        return schoolService.get(id);
+    public Map<String, Object> get(Integer id) {
+        return succeed(schoolService.get(id));
     }
 
     @PostMapping("/save")
-    public void save(School school) {
+    public Map<String, Object> save(School school) {
         schoolService.save(school);
+        return succeed();
     }
 
     @PostMapping("/delete")
-    public void delete(Integer id) {
+    public Map<String, Object> delete(Integer id) {
         schoolService.delete(id);
+        return succeed();
     }
 }

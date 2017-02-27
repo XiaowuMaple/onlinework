@@ -20,6 +20,6 @@ public class UserController extends BaseController {
 
     @PostMapping("/findAll")
     public Map<String, Object> findAll() {
-        return success(userService.findAll());
+        return succeed(userService.findAll());
     }
 }

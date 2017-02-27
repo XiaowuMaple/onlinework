@@ -9,8 +9,8 @@ import Welcome from "components/Welcome"
 import Form from "components/example/Form"
 import Table from "components/example/Table"
 
-import User from "components/user/userList"
-import School from "components/school/schoolList"
+import User from "components/User"
+import School from "components/School"
 
 Vue.use(VueRouter)
 

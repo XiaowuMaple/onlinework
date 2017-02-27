@@ -56,7 +56,7 @@
 </template>
 
 <script>
-	import http from "../../util/http.js";
+	import http from "http.js";
 	
 	export default {
 		data() {
@@ -72,9 +72,14 @@
 		methods: {
 			findAll(pageNum = this.pageNum, pageSize = this.pageSize) {
 				let url = "school/findAll";
-				http.post(url, { pageNum, pageSize }, response => {
-					this.data = response;
-					this.pageNum = pageNum;
+				http.post(url, { pageNum, pageSize, }, response => {
+					if(response.result) {
+						this.data = response.data;
+						this.pageNum = pageNum;
+					} else {
+						this.$message({ message: response.message, type: "error" });
+					}
+
 				});
 			},
 			pageChange(pageNum) {
@@ -84,8 +89,12 @@
 				if(id) {
 					let url = "school/get";
 					http.post(url, { id }, response => {
-						this.school = response;
-						this.editable = true;
+						if(response.result) {
+							this.school = response.data;
+							this.editable = true;
+						} else {
+							this.$message({ message: response.message, type: "error" });
+						}
 					});
 				} else {
 					this.school = {};
@@ -96,16 +105,26 @@
 			del(id) {
 				let url = "school/delete";
 				http.post(url, { id }, response => {
-					this.$message({ message: "操作成功", type: "success" });
-					this.findAll();
+					if(response.result) {
+						this.findAll();
+						this.$message({ message: response.message, type: "success" });
+					} else {
+						this.$message({ message: response.message, type: "error" });
+					}
+
+					
 				});
 			},
 			save() {
 				let url = "school/save";
 				http.post(url, this.school, response => {
-					this.$message({ message: "操作成功", type: "success" });
-					this.findAll();
-					this.editable = false;
+					if(response.result) {
+						this.$message({ message: response.message, type: "success" });
+						this.findAll();
+						this.editable = false;
+					} else {
+						this.$message({ message: response.message, type: "error" });
+					}
 				});
 			}
 

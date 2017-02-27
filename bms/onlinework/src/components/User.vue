@@ -36,7 +36,7 @@
 </template>
 
 <script>
-	import http from "../../util/http.js";
+	import http from "http.js";
 	export default {
 		data() {
 			return {
@@ -50,7 +50,6 @@
 				http.post(url, {}, response => {
 					if(response.result) {
 						this.list = response.data;
-						this.$message({ message: response.message, type: "success" });
 					} else {
 						this.$message({ message: response.message, type: "error" });
 					}
