@@ -13,6 +13,7 @@ import java.util.List;
 public interface SchoolService {
     List<School> findAll();
     Page<School> findAll(Pageable pageable);
+    Page<School> find(String keyword, Pageable pageable);
     School get(Integer id);
     void save(School school);
     void delete(Integer id);

@@ -7,7 +7,7 @@
 					<el-input v-model="keyword" placeholder="keyword"></el-input>
 				</el-form-item>
 				<el-form-item>
-					<el-button>查询</el-button>
+					<el-button @click="find()">查询</el-button>
 				</el-form-item>
 				<el-form-item>
 					<el-button @click="edit">新增</el-button>
@@ -70,9 +70,9 @@
 			}
 		},
 		methods: {
-			findAll(pageNum = this.pageNum, pageSize = this.pageSize) {
-				let url = "school/findAll";
-				http.post(url, { pageNum, pageSize, }, response => {
+			find(pageNum = this.pageNum, pageSize = this.pageSize, keyword = this.keyword) {
+				let url = "school/find";
+				http.post(url, { pageNum, pageSize, keyword }, response => {
 					if(response.result) {
 						this.data = response.data;
 						this.pageNum = pageNum;
@@ -83,7 +83,7 @@
 				});
 			},
 			pageChange(pageNum) {
-				this.findAll(pageNum);
+				this.find(pageNum);
 			},
 			edit(id) {
 				if(id) {
@@ -106,7 +106,7 @@
 				let url = "school/delete";
 				http.post(url, { id }, response => {
 					if(response.result) {
-						this.findAll();
+						this.find();
 						this.$message({ message: response.message, type: "success" });
 					} else {
 						this.$message({ message: response.message, type: "error" });
@@ -120,7 +120,7 @@
 				http.post(url, this.school, response => {
 					if(response.result) {
 						this.$message({ message: response.message, type: "success" });
-						this.findAll();
+						this.find();
 						this.editable = false;
 					} else {
 						this.$message({ message: response.message, type: "error" });
@@ -130,7 +130,7 @@
 
 		},
 		mounted() {
-			this.findAll();
+			this.find();
 		}
 	}
 </script>

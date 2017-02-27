@@ -23,11 +23,14 @@ public class SchoolController extends BaseController {
     @Autowired
     private SchoolService schoolService;
 
-    @PostMapping("/findAll")
-    public Map<String, Object> findAll(@RequestParam(defaultValue = "1") Integer pageNum,
-                       @RequestParam(defaultValue = "10") Integer pageSize) {
+    @PostMapping("/find")
+    public Map<String, Object> find(
+            @RequestParam(defaultValue = "1") Integer pageNum,
+            @RequestParam(defaultValue = "10") Integer pageSize,
+            @RequestParam(defaultValue = "") String keyword) {
         Pageable pageable = new PageRequest(pageNum - 1, pageSize);
-        Page<School> data = schoolService.findAll(pageable);
+//        Page<School> data = schoolService.findAll(pageable);
+        Page<School> data = schoolService.find(keyword, pageable);
         return succeed(data);
     }
 

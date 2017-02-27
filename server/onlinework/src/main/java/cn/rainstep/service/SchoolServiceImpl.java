@@ -4,6 +4,8 @@ import cn.rainstep.dao.SchoolRepository;
 import cn.rainstep.entity.School;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,12 @@ public class SchoolServiceImpl implements SchoolService {
     @Override
     public Page<School> findAll(Pageable pageable) {
         return schoolRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<School> find(String keyword, Pageable pageable) {
+        keyword = "%" + keyword + "%";
+        return schoolRepository.findByNameLikeOrAddressLike(keyword, keyword, pageable);
     }
 
     @Override
