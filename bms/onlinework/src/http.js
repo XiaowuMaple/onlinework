@@ -1,4 +1,4 @@
-const prefix = "http://localhost/onlinework/";
+const prefix = "http://www.rainstep.cn/onlinework/";
 
 export default {
 	post(url, params, callback) {

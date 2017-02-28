@@ -10,7 +10,7 @@
 					<el-button @click="find()">查询</el-button>
 				</el-form-item>
 				<el-form-item>
-					<el-button @click="edit">新增</el-button>
+					<el-button @click="edit()">新增</el-button>
 				</el-form-item>
 			</el-form>
 		</el-col>
