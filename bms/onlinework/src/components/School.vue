@@ -17,9 +17,9 @@
 		<!-- toolbar end -->
 		
 		<!-- table start -->
-		<el-table :data="data.content" @sort-change="sort" v-loading="loading">
-			<el-table-column prop="name" sortable="custom" label="Name"></el-table-column>
-			<el-table-column prop="address" sortable="custom" label="Address"></el-table-column>
+		<el-table :data="data.content" v-loading="loading">
+			<el-table-column prop="name" sortable label="Name"></el-table-column>
+			<el-table-column prop="address" sortable label="Address"></el-table-column>
 			<el-table-column inline-template label="Operate" min-width="144">
 				<div>
 			        <el-button size="small" type="text" @click="edit(row.id)">编辑</el-button>
@@ -94,9 +94,6 @@
 					}
 					this.loading = false;
 				});
-			},
-			sort({ column, prop, order }) {
-				console.log(column, prop, order);
 			},
 			pageChange(pageNum) {
 				this.find(pageNum);
