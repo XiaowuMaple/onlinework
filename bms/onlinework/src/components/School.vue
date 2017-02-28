@@ -1,6 +1,6 @@
 <template>
 	<el-row class="content-wrapper">
-		<!-- toolbar -->
+		<!-- toolbar start -->
 		<el-col :span="24" class="toolbar">
 			<el-form inline>
 				<el-form-item>
@@ -14,11 +14,12 @@
 				</el-form-item>
 			</el-form>
 		</el-col>
+		<!-- toolbar end -->
 		
-		<!-- table -->
-		<el-table :data="data.content">
-			<el-table-column prop="name" label="Name"></el-table-column>
-			<el-table-column prop="address" label="Address"></el-table-column>
+		<!-- table start -->
+		<el-table :data="data.content" @sort-change="sort" v-loading="loading">
+			<el-table-column prop="name" sortable="custom" label="Name"></el-table-column>
+			<el-table-column prop="address" sortable="custom" label="Address"></el-table-column>
 			<el-table-column inline-template label="Operate" min-width="144">
 				<div>
 			        <el-button size="small" type="text" @click="edit(row.id)">编辑</el-button>
@@ -26,6 +27,7 @@
 		      	</div>
 			</el-table-column>
 		</el-table>
+		<!-- table end -->
 		
 		<!-- pagination -->
 		<div class="pagination">
@@ -35,9 +37,10 @@
 				:total="data.totalElements"
 				@current-change="pageChange"></el-pagination>
 		</div>
+		<!-- pagination end -->
 		
 			
-		<!-- edit modal -->
+		<!-- editmodal start  -->
 		<el-dialog title="学校信息编辑" v-model="editable">
 			<el-form :model="school" label-width="80px">
 				<el-form-item label="名称" prop="name">
@@ -52,6 +55,8 @@
 			    <el-button type="primary" @click="save">保存</el-button>
 			</div>
 		</el-dialog>
+		<!-- editmodal end  -->
+		
 	</el-row>
 </template>
 
@@ -67,11 +72,13 @@
 				pageSize: 10,
 				editable: false,
 				school: {},
+				loading: false,
 			}
 		},
 		methods: {
 			find(pageNum = this.pageNum, pageSize = this.pageSize, keyword = this.keyword) {
 				let url = "school/find";
+				this.loading = true;
 				http.post(url, { pageNum, pageSize, keyword }, response => {
 					if(response.result) {
 						this.data = response.data;
@@ -79,8 +86,11 @@
 					} else {
 						this.$message({ message: response.message, type: "error" });
 					}
-
+					this.loading = false;
 				});
+			},
+			sort({ column, prop, order }) {
+				console.log(column, prop, order);
 			},
 			pageChange(pageNum) {
 				this.find(pageNum);
@@ -144,12 +154,11 @@
 		padding: 10px 10px 0px 10px;
 	}
 	.pagination {
-		overflow: auto;
 		margin: 10px;
 	}
 	.pagination>.el-pagination{
-/*		text-align: center;*/
-		float: right;
+
+		text-align: right;
 	}
 	.el-dialog .el-form>.el-form-item:last-child{
 		margin-bottom: 0;

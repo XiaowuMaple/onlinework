@@ -21,7 +21,7 @@
 		<!-- table -->
 		<el-table :data="list">
 			<el-table-column prop="name" label="Name"></el-table-column>
-			<el-table-column prop="sex" label="Sex"></el-table-column>
+			<el-table-column prop="sex" :formatter="gender" label="Sex"></el-table-column>
 			<el-table-column prop="birthday" label="Birthday"></el-table-column>
 			<el-table-column prop="mobile" label="Mobile"></el-table-column>
 			<el-table-column prop="email" label="Email"></el-table-column>
@@ -45,8 +45,8 @@
 			}
 		},
 		methods: {
-			findAll() {
-				let url = "user/findAll";
+			find() {
+				let url = "user/find";
 				http.post(url, {}, response => {
 					if(response.result) {
 						this.list = response.data;
@@ -60,11 +60,15 @@
 			},
 			handleDelete(row) {
 				console.log(row);
+			},
+			gender(row, column) {
+				console.log(row, column);
+				return row.sex ? "男" : "女";
 			}
 			
 		},
 		mounted() {
-			this.findAll();
+			this.find();
 		}
 	}
 </script>

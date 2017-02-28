@@ -6,11 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 
@@ -27,9 +30,8 @@ public class SchoolController extends BaseController {
     public Map<String, Object> find(
             @RequestParam(defaultValue = "1") Integer pageNum,
             @RequestParam(defaultValue = "10") Integer pageSize,
-            @RequestParam(defaultValue = "") String keyword) {
+            @RequestParam(defaultValue = "") String keyword) throws InterruptedException {
         Pageable pageable = new PageRequest(pageNum - 1, pageSize);
-//        Page<School> data = schoolService.findAll(pageable);
         Page<School> data = schoolService.find(keyword, pageable);
         return succeed(data);
     }

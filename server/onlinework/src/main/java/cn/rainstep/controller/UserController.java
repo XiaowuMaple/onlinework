@@ -18,8 +18,8 @@ public class UserController extends BaseController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/findAll")
-    public Map<String, Object> findAll() {
+    @PostMapping("/find")
+    public Map<String, Object> find() {
         return succeed(userService.findAll());
     }
 }
