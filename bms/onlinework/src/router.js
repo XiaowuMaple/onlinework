@@ -6,10 +6,6 @@ import Login from "components/Login"
 import Error404 from "components/Error404"
 import Welcome from "components/Welcome"
 
-import Form from "components/example/Form"
-import Table from "components/example/Table"
-
-import User from "components/User"
 import School from "components/School"
 
 Vue.use(VueRouter)
@@ -20,9 +16,6 @@ const routes = [
 		component: Home,
 		children: [
 			{ path: "/", component: Welcome },
-			{ path: "form", component: Form },
-			{ path: "table", component: Table },
-			{ path: "user", component: User },
 			{ path: "school", component: School },
 		]
 	},

@@ -79,6 +79,12 @@
 			find(pageNum = this.pageNum, pageSize = this.pageSize, keyword = this.keyword) {
 				let url = "school/find";
 				this.loading = true;
+				setTimeout(() => {
+					if(this.loading) {
+			          	this.loading = false;
+						this.$message({ message: "加载失败", type: "warning" });
+					}
+		        }, 3000);
 				http.post(url, { pageNum, pageSize, keyword }, response => {
 					if(response.result) {
 						this.data = response.data;
