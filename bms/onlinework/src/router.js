@@ -7,7 +7,7 @@ import Error404 from "components/Error404"
 import Welcome from "components/Welcome"
 
 import School from "components/School"
-
+import campus from "components/campus.vue";
 Vue.use(VueRouter)
 
 const routes = [
@@ -17,6 +17,7 @@ const routes = [
 		children: [
 			{ path: "/", component: Welcome },
 			{ path: "school", component: School },
+			{ path: "campus", component: campus },
 		]
 	},
 	{ path: "/login", component: Login },

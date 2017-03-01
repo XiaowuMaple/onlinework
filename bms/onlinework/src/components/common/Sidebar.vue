@@ -7,7 +7,14 @@
 	          	<el-menu-item index="/table">Table</el-menu-item>
 	          	<el-menu-item index="/form">Form</el-menu-item>
 	      	</el-submenu>-->
-	     	<el-menu-item index="/school"><i class="el-icon-setting"></i>School</el-menu-item>
+	     	<el-menu-item index="/school">
+	     	<i class="el-icon-setting"></i>
+	     	School
+	     	</el-menu-item>
+	     	 <el-menu-item index="/campus">
+	     	<i class="el-icon-setting"></i>
+	     	校园管理
+	     	</el-menu-item>
 	    </el-menu>
 	</el-col>
 </template>
