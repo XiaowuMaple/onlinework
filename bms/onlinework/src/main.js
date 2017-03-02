@@ -7,7 +7,7 @@ import ElementUI from "element-ui"
 import "element-ui/lib/theme-default/index.css"
 
 /* eslint-disable no-new */
-
+Vue.config.productionTip = false;//取消页面广告
 Vue.use(ElementUI);
 
 new Vue({
