@@ -11,20 +11,10 @@ import javax.persistence.Id;
  */
 @Entity
 @JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
-public class School {
-    @Id
-    @GeneratedValue
-    private Integer id;
+public class School extends Base {
+
     private String name;
     private String address;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

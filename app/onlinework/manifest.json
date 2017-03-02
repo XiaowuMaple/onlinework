@@ -189,5 +189,59 @@
 				}
 			}
 		}
+	},
+	"dependencies": {
+		"pages": {
+			"index.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"home.html",
+					"css/icons-extra.css"
+				],
+				"refer": [
+					"message.html",
+					"person.html",
+					"info.html"
+				],
+				"priority": 0
+			},
+			"message.html": {
+				"resources": [
+					"js/mui.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"home.html": {
+				"resources": [
+					"fonts/mui-icons-extra.ttf",
+					"img/shuijiao.jpg",
+					"img/muwu.jpg",
+					"img/yuantiao.jpg",
+					"img/cbd.jpg"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"info.html": {
+				"resources": [
+					"js/mui.js",
+					"css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			}
+		},
+		"idle": {
+			"resources": [
+				"phone.html",
+				"index_template.html",
+				"email.html",
+				"css/mui.css",
+				"gear.html"
+			]
+		}
 	}
 }

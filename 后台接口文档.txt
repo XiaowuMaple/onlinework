@@ -1,0 +1,105 @@
+接口名称：登录接口
+请求路径：user/login
+
+请求参数
+key			描述		类型		非空	默认值
+--------------------------------------------------
+account		账号    	String		是  	无
+password	密码    	String		是     	无
+
+响应数据
+{
+	result: true,
+	data: {
+		id, account, name, password, sex, birthday, mobile, email, photo
+	},
+	message: "操作成功"
+}
+
+*******************************************************************************
+
+接口名称：查询用户
+请求路径：user/find
+
+请求参数
+key			描述		类型		非空	默认值
+--------------------------------------------------
+pageNum		第几页    	int			否  	1
+pageSize	每页大小   	int			否  	10
+keyword		关键词    	String		否     	""
+
+响应数据
+{
+	result: true,
+	data: {
+		content: [
+			{ id, account, name, password, sex, birthday, mobile, email, photo }
+		],
+		totalElements: 100,
+	},
+	message: "操作成功"
+}
+
+*******************************************************************************
+
+接口名称：查找用户
+请求路径：user/get
+
+请求参数
+key			描述		类型		非空	默认值
+--------------------------------------------------
+id			用户编号    int			是  	无
+
+
+响应数据
+{
+	result: true,
+	data: {
+		id, account, name, password, sex, birthday, mobile, email, photo
+	},
+	message: "操作成功"
+}
+
+*******************************************************************************
+
+接口名称：保存用户
+请求路径：user/save
+
+请求参数
+key			描述		类型								非空	默认值
+----------------------------------------------------------------------
+id			编号    	int									否  	无
+account		账号    	String								是  	无
+name		用户名    	String								否  	无
+password	密码    	String								是  	无
+sex			性别    	boolean/int(0表示false, 1表示true) 	否  	无
+birthday	生日    	String(yyyy-MM-dd)					否  	无
+mobile		手机    	String								否  	无
+email		邮箱    	String								否  	无
+photo		头像    	String								否  	无
+
+
+响应数据
+{
+	result: true,
+	data: null,
+	message: "操作成功"
+}
+
+*******************************************************************************
+
+接口名称：删除用户
+请求路径：user/delete
+
+请求参数
+key			描述		类型	非空	默认值
+----------------------------------------------------------------------
+id			编号    	int		是  	无
+
+响应数据
+{
+	result: true,
+	data: null,
+	message: "操作成功"
+}
+
