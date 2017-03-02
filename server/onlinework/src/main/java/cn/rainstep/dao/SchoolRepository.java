@@ -14,6 +14,5 @@ import java.util.List;
  */
 @Repository
 public interface SchoolRepository extends JpaRepository<School, Integer> {
-    List<School> findByName(String name);
     Page<School> findByNameLikeOrAddressLike(String name, String address, Pageable pageable);
 }

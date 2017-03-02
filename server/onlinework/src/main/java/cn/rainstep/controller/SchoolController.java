@@ -1,7 +1,7 @@
 package cn.rainstep.controller;
 
 import cn.rainstep.entity.School;
-import cn.rainstep.service.SchoolService;
+import cn.rainstep.service.interfaces.ISchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,9 +22,9 @@ import java.util.Map;
 @RequestMapping("/school")
 public class SchoolController extends BaseController {
     @Autowired
-    private SchoolService schoolService;
+    private ISchoolService schoolService;
 
-    @PostMapping("/find")
+    @RequestMapping("/find")
     public Map<String, Object> find(
             @RequestParam(defaultValue = "1") Integer pageNum,
             @RequestParam(defaultValue = "10") Integer pageSize,
@@ -34,18 +34,18 @@ public class SchoolController extends BaseController {
         return succeed(data);
     }
 
-    @PostMapping("/get")
+    @RequestMapping("/get")
     public Map<String, Object> get(Integer id) {
         return succeed(schoolService.get(id));
     }
 
-    @PostMapping("/save")
+    @RequestMapping("/save")
     public Map<String, Object> save(School school) {
         schoolService.save(school);
         return succeed();
     }
 
-    @PostMapping("/delete")
+    @RequestMapping("/delete")
     public Map<String, Object> delete(Integer id) {
         schoolService.delete(id);
         return succeed();

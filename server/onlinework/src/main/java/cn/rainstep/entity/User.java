@@ -1,5 +1,7 @@
 package cn.rainstep.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,10 +12,8 @@ import java.sql.Date;
  */
 
 @Entity
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
 public class User extends Base {
-    @Id
-    @GeneratedValue
-    private Integer id;
     private String account;
     private String name;
     private String password;
@@ -22,16 +22,6 @@ public class User extends Base {
     private String mobile;
     private String email;
     private String photo;
-
-    @Override
-    public Integer getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getAccount() {
         return account;
